@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.fft import rfftn, irfftn
 
-def generate(mu=0.0, sigma=1.0, shape, rng):
+def generate(mu, sigma, shape, rng):
     grf = rng.normal(mu, sigma, shape)
     print('GRF :', grf.dtype, grf.shape)
     return grf
