@@ -1,3 +1,3 @@
 # GaRField
 
-A Gaussian Random Field generator that can produce lower- or higher-resolution versions while preserving the large-scale modes of the original field.
+A Gaussian Random Field generator that produces multi-resolution realizations while preserving the large-scale Fourier modes of the original field.
