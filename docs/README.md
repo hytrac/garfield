@@ -12,7 +12,7 @@ GaRField generates Gaussian Random Fields in arbitrary dimensions with consisten
 
 `garfield_decrease_resolution.ipynb`
 - Generate a base GRF or read data from a file
-- Decrease the resolution while preserving the large-scale Fourier modes
+- Decrease the resolution while preserving the large-scale Fourier modes of the base GRF
 - Save the lower-resolution array as a `.npy` file
 
 <br>
@@ -21,3 +21,4 @@ GaRField generates Gaussian Random Fields in arbitrary dimensions with consisten
 - Generate a base GRF or read data from a file
 - Combine the large-scale modes from the base GRF with additional smaller-scale modes from a higher-resolution realization
 - Save the higher-resolution array as a `.npy` file
+
