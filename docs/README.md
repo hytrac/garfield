@@ -4,11 +4,24 @@ GaRField generates Gaussian Random Fields in arbitrary dimensions with consisten
 
 # Notebooks
 
-`garfield_basic.ipynb`: generate a GRF and save the ND array as a numpy file.
+`garfield_basic.ipynb`
+- generate a GRF
+- save the ND array as a numpy file
 
-`garfield_decrease_resolution.ipynb`: First generate a base GRF or read data from a file, then decrease the resolution, and save the lower-resolution array as a numpy file.
+<br>
 
-`garfield_increase_resolution.ipynb`: First generate a base GRF or read data from a file, then increase the resolution, and save the higher-resolution array as a numpy file.
+`garfield_decrease_resolution.ipynb`
+- generate a base GRF or read data from a file
+- decrease the resolution
+- save the lower-resolution array as a numpy file
+
+<br>
+
+`garfield_increase_resolution.ipynb`
+- generate a base GRF or read data from a file
+- increase the resolution
+- save the higher-resolution array as a numpy file
+
 
 
 
