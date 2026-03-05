@@ -4,6 +4,4 @@ GaRField generates Gaussian Random Fields in arbitrary dimensions with consisten
 
 # Contact
 
-Please submit comments and questions to [issues](https://github.com/hytrac/garfield/issues).
-
-The current lead developer is Hy Trac (hytrac@andrew.cmu.edu).
+Please submit comments and questions to [issues](https://github.com/hytrac/garfield/issues) or directly to developer Hy Trac (hytrac@andrew.cmu.edu).
