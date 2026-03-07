@@ -1,25 +1,11 @@
 import numpy as np
+from fourier   import large_scale_ix
 from scipy.fft import rfftn, irfftn
 
 def generate(mu, sigma, shape, rng):
     grf = rng.normal(mu, sigma, shape)
     print('GRF :', grf.dtype, grf.shape)
     return grf
-
-def large_scale_ix(small_shape):
-    # Number of dimensions
-    ndim = len(small_shape)
-    
-    # Build index arrays per axis
-    indices = []
-    for ax, nk in enumerate(small_shape):
-        if ax < ndim - 1:
-            half = nk//2
-            indices.append(np.roll(np.arange(-half,half),half))
-        else:
-            indices.append(np.arange(nk))
-    
-    return np.ix_(*indices)
 
 def decrease_resolution(grf_hr, shape_lr):
     # Real-to-complex forward FFT high-res GRF
