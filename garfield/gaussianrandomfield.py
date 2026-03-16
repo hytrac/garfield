@@ -93,7 +93,7 @@ def increase_resolution(grf_lr, shape_hr, rng, verbose=False):
     # Complex-to-real inverse FFT high-res GRF
     grf_hr = irfftn(fft_hr, overwrite_x=True)
 
-    if (verbose)
+    if (verbose):
         print('GRF hr            :', grf_hr.dtype, grf_hr.shape)
     
     return grf_hr
