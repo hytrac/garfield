@@ -2,7 +2,7 @@ import numpy as np
 
 def large_scale_ix(small_shape):
     """
-    Generate an index tuple for selecting large-scale Fourier modes.
+    Generate an index tuple for selecting large-scale (low-frequency) Fourier modes.
 
     Parameters
     ----------

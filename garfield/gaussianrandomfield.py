@@ -16,6 +16,8 @@ def generate(mu, sigma, shape, rng, verbose=False):
         Shape of the output array.
     rng : numpy.random.Generator
         Random number generator used to draw the samples.
+    verbose : bool, optional
+        If True, print diagnostic information (default is False).
 
     Returns
     -------
@@ -24,16 +26,34 @@ def generate(mu, sigma, shape, rng, verbose=False):
         standard deviation, and shape.
     """
     
-    # Draw samples from a normal distribution
+    # Draw random samples from a normal (Gaussian) distribution
     grf = rng.normal(mu, sigma, shape)
 
-    # Print
     if (verbose):
         print('GRF :', grf.dtype, grf.shape)
         
     return grf
 
 def decrease_resolution(grf_hr, shape_lr, verbose=False):
+    """
+    Downsample a high-resolution Gaussian random field by keeping only
+    large-scale (low-frequency) Fourier modes.
+
+    Parameters
+    ----------
+    grf_hr : ndarray
+        High-resolution real-space field.
+    shape_lr : tuple of int
+        Desired shape of the low-resolution field.
+    verbose : bool, optional
+        If True, print diagnostic information (default is False).
+
+    Returns
+    -------
+    ndarray
+        Low-resolution real-space field.
+    """
+    
     # Real-to-complex forward FFT high-res GRF
     fft_hr = rfftn(grf_hr)
 
@@ -64,6 +84,27 @@ def decrease_resolution(grf_hr, shape_lr, verbose=False):
     return grf_lr
 
 def increase_resolution(grf_lr, shape_hr, rng, verbose=False):
+    """
+    Upsample a low-resolution Gaussian random field by embedding 
+    its large-scale Fourier modes into a higher-resolution field.
+
+    Parameters
+    ----------
+    grf_lr : ndarray
+        Low-resolution real-space field.
+    shape_hr : tuple of int
+        Desired shape of the high-resolution field.
+    rng : numpy.random.Generator
+        Random number generator used to generate small-scale fluctuations.
+    verbose : bool, optional
+        If True, print diagnostic information (default is False).
+
+    Returns
+    -------
+    ndarray
+        High-resolution real-space field.
+    """
+    
     # High-res GRF with same mean and variance
     mu     = np.mean(grf_lr.ravel())
     sigma  = np.std( grf_lr.ravel())
@@ -97,5 +138,3 @@ def increase_resolution(grf_lr, shape_hr, rng, verbose=False):
         print('GRF hr            :', grf_hr.dtype, grf_hr.shape)
     
     return grf_hr
-
-    
