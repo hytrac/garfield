@@ -1,5 +1,4 @@
 import numpy as np
-from fourier   import large_scale_ix
 from scipy.fft import rfftn, irfftn
 
 def generate(mu, sigma, shape, rng, verbose=False):
@@ -138,3 +137,41 @@ def increase_resolution(grf_lr, shape_hr, rng, verbose=False):
         print('GRF hr            :', grf_hr.dtype, grf_hr.shape)
     
     return grf_hr
+
+def smooth_field(grf, window_func, box=1.0):
+    # Real-to-complex forward FFT
+    field = rfftn(grf)
+
+    # Complex-to-real inverse FFT smoothed GRF
+    grf_sm = irfftn(field, overwrite_x=True)
+    
+    return grf_sm
+
+def large_scale_ix(small_shape):
+    """
+    Generate an index tuple for selecting large-scale (low-frequency) Fourier modes.
+
+    Parameters
+    ----------
+    small_shape : tuple of int
+        Shape of the smaller grid along each axis.
+
+    Returns
+    -------
+    tuple of ndarray
+        Tuple of index arrays suitable for `np.ix_`.
+    """
+    
+    # Number of dimensions
+    ndim = len(small_shape)
+    
+    # Build index arrays per axis
+    indices = []
+    for ax, nk in enumerate(small_shape):
+        if ax < ndim - 1:
+            half = nk//2
+            indices.append(np.roll(np.arange(-half,half),half))
+        else:
+            indices.append(np.arange(nk))
+    
+    return np.ix_(*indices)
